@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IoMenu } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import imgUrl from "../../../assets/logo.png";
+import { SidebarContext } from "../../../context/SideBarContext";
 
 const LeftNav = () => {
+  const { handleToggleSidebar } = useContext(SidebarContext);
+
   return (
     <div className="menu-logo">
-      <button className="icon-container burgerMenu">
+      <button
+        className="icon-container burgerMenu"
+        onClick={handleToggleSidebar}
+      >
         <IoMenu size={25} />
       </button>
 
