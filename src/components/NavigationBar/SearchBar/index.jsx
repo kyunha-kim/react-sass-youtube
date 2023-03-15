@@ -1,17 +1,25 @@
+/* eslint-disable react/prop-types */
 import React, { useContext } from "react";
 import { ImSearch } from "react-icons/im";
 import { MdKeyboardVoice } from "react-icons/md";
 import { SearchContext } from "../../../context/SearchContext";
 import useWindowSize from "../../../helpers/useWindowSize";
 
-const SearchBar = () => {
+const SearchBar = ({ onChange, onSubmit }) => {
   const { width } = useWindowSize();
-  const { setShowSpecialSearchBar } = useContext(SearchContext);
+  const { searchQuery, setShowSpecialSearchBar } = useContext(SearchContext);
+
   return (
     <div className={`SearchBar ${width <= 640 ? "smallSearch" : ""}`}>
       {width > 640 ? (
-        <form>
-          <input type="text" name="search" placeholder="Search" />
+        <form onSubmit={onSubmit}>
+          <input
+            value={searchQuery.input}
+            onChange={onChange}
+            type="text"
+            name="search"
+            placeholder="Search"
+          />
           <button>
             <ImSearch size={20} />
           </button>
