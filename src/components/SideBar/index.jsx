@@ -9,11 +9,25 @@ const SideBar = () => {
   const { isToggled, setIsToggled } = useContext(SidebarContext);
 
   useEffect(() => {
-    width <= 1320 ? setIsToggled(false) : setIsToggled(true);
-  }, [width]);
+    width <= 1320
+      ? setIsToggled(false)
+      : location.pathname.startsWith("/video/")
+      ? setIsToggled(false)
+      : setIsToggled(true);
+  }, [width, location.pathname, setIsToggled]);
 
   return (
-    <>{width < 792 ? null : isToggled ? <BigSideBar /> : <SmallSideBar />}</>
+    <>
+      {location.pathname.startsWith("/video/") ? (
+        isToggled ? (
+          <BigSideBar />
+        ) : null
+      ) : width < 792 ? null : isToggled ? (
+        <BigSideBar />
+      ) : (
+        <SmallSideBar />
+      )}
+    </>
   );
 };
 

@@ -8,13 +8,11 @@ import { SideBarContextProvider } from "./context/SideBarContext";
 import "./scss/main.scss";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <SearchContextProvider>
-        <SideBarContextProvider>
-          <App />
-        </SideBarContextProvider>
-      </SearchContextProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <SearchContextProvider>
+      <SideBarContextProvider>
+        <App />
+      </SideBarContextProvider>
+    </SearchContextProvider>
+  </BrowserRouter>
 );
